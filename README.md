@@ -33,6 +33,12 @@ Set the application key if needed:
 php artisan key:generate
 ```
 
+Cache the new configuration if needed:
+
+```bash
+php artisan config:cache
+```
+
 Depending on the environment you may optionally
 run PHP server locally:
 
