@@ -17,12 +17,7 @@ class ImagineController extends Controller
     public function generateImagine()
     {
         return response()->json(
-            BlockadeLabsClient::generateImagine([
-                'generator' => request()->generator,
-                'prompt' => request()->prompt,
-                // 'init_image' => request()->file('init_image') - example for the file params
-                // check the docs for other available params
-            ])
+            BlockadeLabsClient::generateImagine(request()->all())
         );
     }
 
@@ -43,15 +38,7 @@ class ImagineController extends Controller
     public function getImagineHistory()
     {
         return response()->json(
-            BlockadeLabsClient::getImagineHistory([
-                'status' => request()->status,
-                'limit' => request()->limit,
-                'offset' => request()->offset,
-                'order' => request()->order,
-                'imagine_id' => request()->imagine_id,
-                'query' => request()->query,
-                'generator' => request()->generator,
-            ])
+            BlockadeLabsClient::getImagineHistory(request()->all())
         );
     }
 
