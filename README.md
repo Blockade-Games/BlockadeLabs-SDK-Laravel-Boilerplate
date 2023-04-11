@@ -1,66 +1,67 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Blockade Labs SDK Laravel Boilerplate
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+This boilerplate can serve as a type of API proxy for accessing Blockade Labs API routes for
+generating skyboxes and imagine requests.
 
-## About Laravel
+## Versions and dependencies
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Boilerplate uses:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- Laravel 10.x.x (PHP ^8.1)
+- [Blockade Labs SDK 1.x.x](https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel)
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Cloning the repository
 
-## Learning Laravel
+Refer to GitHub docs on how to clone a [repo](https://docs.github.com/en/repositories/creating-and-managing-repositories/cloning-a-repository).
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Getting Started
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+After you have cloned the repo, copy the `.env.example` file and rename it to `.env`.
+Next, you need to edit your `.env` file and add your Blockade Labs API key:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+`BLOCKADE_LABS_API_KEY=YOUR_API_KEY`
 
-## Laravel Sponsors
+Install dependencies with:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+```bash
+composer install
+```
 
-### Premium Partners
+Set the application key if needed:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+```bash
+php artisan key:generate
+```
 
-## Contributing
+Cache the new configuration if needed:
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+php artisan config:cache
+```
 
-## Code of Conduct
+Depending on the environment you may optionally
+run PHP server locally:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+php artisan serve
+```
 
-## Security Vulnerabilities
+## Usage
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Routes are defined in [api.php](routes/api.php) file, they are matching the same structure as the 
+original API routes from Blockade's API.
 
-## License
+In the [VerifyCsrfToken](app/Http/Middleware/VerifyCsrfToken.php) currently an exception for the API routes 
+is added like so `api/v1/*`, so basically any API requests won't be requiring the CSRF token.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Main files that are added to boilerplate are [SkyboxController](app/Http/Controllers/API/SkyboxController.php)
+and [ImagineController](app/Http/Controllers/API/ImagineController.php) and there you can manipulate the
+data that is sent and received, if needed. Both files are using a [Blockade Labs SDK](https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel)
+package and are importing a facade that is in charge of  communicating with the original API. 
+
+```php
+use BlockadeLabs\SDK\Facades\BlockadeLabsClient;
+```
+
+All the methods and routes are also explained (in greater detail) in the Docs
+[here](https://api-documentation.blockadelabs.com).
