@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "blockadelabs/sdk",
-            "version": "1.0.2",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel.git",
-                "reference": "d656d343052391c513e3f71fe179e56d454bc94b"
+                "reference": "e783783ff9d8a2350b72115cd7b797da93adf59d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Blockade-Games/BlockadeLabs-SDK-Laravel/zipball/d656d343052391c513e3f71fe179e56d454bc94b",
-                "reference": "d656d343052391c513e3f71fe179e56d454bc94b",
+                "url": "https://api.github.com/repos/Blockade-Games/BlockadeLabs-SDK-Laravel/zipball/e783783ff9d8a2350b72115cd7b797da93adf59d",
+                "reference": "e783783ff9d8a2350b72115cd7b797da93adf59d",
                 "shasum": ""
             },
             "require": {
@@ -61,9 +61,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel/issues",
-                "source": "https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel/tree/1.0.2"
+                "source": "https://github.com/Blockade-Games/BlockadeLabs-SDK-Laravel/tree/1.0.3"
             },
-            "time": "2023-04-06T15:21:50+00:00"
+            "time": "2023-04-11T08:23:16+00:00"
         },
         {
             "name": "brick/math",
